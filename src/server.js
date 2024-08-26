@@ -1,9 +1,31 @@
 import express from "express";
+import pino from 'pino-http';
+import cors from 'cors';
+import { env } from './utils/env.js';
 
-const PORT = 3000;
+const PORT = Number(env('PORT', '3000'));
 
-const setupServer = express();
+export const setupServer = () => {
+    const app = express();
 
-setupServer.listen(PORT, () => {
-    console.log(`Server is running of PORT ${PORT}`);
-});
+    app.use(cors());
+    app.use(pino({
+        transport: {
+            target: 'pino-pretty'
+        }
+    }));
+
+    app.use((req, res, next) => {
+        res.status(404).json({
+            message: 'Not found',
+        });
+    });
+
+
+    app.listen(PORT, () => {
+        console.log(`Server is running of PORT ${PORT}`);
+    });
+};
+
+
+
