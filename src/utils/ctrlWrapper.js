@@ -1,7 +1,7 @@
-export const crtlWrapper = (controler) => {
+export const crtlWrapper = (controller) => {
     return async (req, res, next) => {
         try {
-            await controler(req, res, next);
+            await controller(req, res, next);
         } catch (err) {
             next(err);
         }
