@@ -3,11 +3,11 @@ import { model, Schema } from "mongoose";
 const contactsSchema = new Schema({
     name: {
         type: String,
-        require: true,
+        required: true,
     },
     phoneNumber: {
         type: String,
-        require: true,
+        required: true,
     },
     email: {
         type: String,
