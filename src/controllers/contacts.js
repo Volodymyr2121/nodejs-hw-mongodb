@@ -85,7 +85,7 @@ export const deleteContactController = async (req, res, next) => {
     const contact = await deleteContact(contactId);
 
     if (!contact) {
-        next(createHttpError(404, 'Contact not found'));
+        next(createHttpError(404, `Movie with id=${contactId} not found`));
         return;
     }
 
