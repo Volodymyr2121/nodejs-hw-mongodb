@@ -10,6 +10,8 @@ export const getAllContacts = async ({ perPage, page, sortBy = "_id", sortOrder 
     }
     if (filter.isFavourite)
         contactsQuery.where("isFavourite").equals(filter.isFavourite);
+    if (filter.userId)
+        contactsQuery.where("userId").equals(filter.userId);
 
     const contacts = await contactsQuery.skip(skip).limit(perPage).sort({[sortBy]: sortOrder});
     const count = await ContactCollection.find().countDocuments();
@@ -25,8 +27,8 @@ export const getAllContacts = async ({ perPage, page, sortBy = "_id", sortOrder 
     };
 };
 
-export const getContactsById = async (contactId) => {
-    const contact = await ContactCollection.findById(contactId);
+export const getContactsById = async (filter) => {
+    const contact = await ContactCollection.findById(filter);
     return contact;
 };
 

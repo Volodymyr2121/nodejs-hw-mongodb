@@ -6,6 +6,7 @@ import contactsRouter from "./routers/contacts.js";
 import { notFoundHandler } from "./midlewarres/notFoundHandler.js";
 import { errorHandler } from "./midlewarres/errorHandler.js";
 import authRouter from "./routers/auth.js";
+import cookieParser from "cookie-parser";
 
 const PORT = Number(env('PORT', '3000'));
 
@@ -19,10 +20,11 @@ export const setupServer = () => {
             target: 'pino-pretty'
         }
     }));
+    app.use(cookieParser());
 
 
-    app.use(contactsRouter);
-    app.use(authRouter);
+    app.use("/auth", authRouter);
+    app.use("/contacts", contactsRouter);
 
     app.use('*', notFoundHandler);
     app.use(errorHandler);
