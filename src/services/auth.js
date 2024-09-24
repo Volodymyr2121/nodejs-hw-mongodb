@@ -6,14 +6,14 @@ import { accessTokenLifetime, refreshTokenLifetime } from "../constant/user.js";
 import { SessionCollection } from "../db/models/session.js";
 
 const createSession = () => {
-    const accesToken = randomBytes(30).toString("base64");
+    const accessToken = randomBytes(30).toString("base64");
     const refreshToken = randomBytes(30).toString("base64");
-    const accesTokenValidUnit = new Date(Date.now() + accessTokenLifetime);
+    const accessTokenValidUnit = new Date(Date.now() + accessTokenLifetime);
     const refreshTokenValidUnit = new Date(Date.now() + refreshTokenLifetime);
     return ({
-        accesToken,
+        accessToken,
         refreshToken,
-        accesTokenValidUnit,
+        accessTokenValidUnit,
         refreshTokenValidUnit
     });
 };
@@ -56,7 +56,7 @@ export const signIn = async (payload) => {
     return userSession;
 };
 
-export const findAccesTokenBySession = accesToken => SessionCollection.findOne({ accesToken });
+export const findAccessTokenBySession = accessToken => SessionCollection.findOne({ accessToken });
 
 export const refreshSession = async({ refreshToken, sessionId }) => { 
     const oldSession = await SessionCollection.findOne({ _id: sessionId, refreshToken });

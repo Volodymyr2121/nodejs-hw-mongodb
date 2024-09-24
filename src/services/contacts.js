@@ -14,7 +14,7 @@ export const getAllContacts = async ({ perPage, page, sortBy = "_id", sortOrder 
         contactsQuery.where("userId").equals(filter.userId);
 
     const contacts = await contactsQuery.skip(skip).limit(perPage).sort({[sortBy]: sortOrder});
-    const count = await ContactCollection.find().countDocuments();
+    const count = await ContactCollection.find().merge(contactsQuery).countDocuments();
 
     const paginationContacts = calculatePaginationData({ count, perPage, page });
 
@@ -28,7 +28,7 @@ export const getAllContacts = async ({ perPage, page, sortBy = "_id", sortOrder 
 };
 
 export const getContactsById = async (filter) => {
-    const contact = await ContactCollection.findById(filter);
+    const contact = await ContactCollection.findOne(filter);
     return contact;
 };
 
@@ -52,6 +52,6 @@ export const updateContact = async (contactId, payload, options = {}) => {
 };
 
 export const deleteContact = async (contactId) => {
-    const contact = ContactCollection.findByIdAndDelete({ _id: contactId });
+    const contact = ContactCollection.findOneAndDelete({ _id: contactId });
     return contact;
 };

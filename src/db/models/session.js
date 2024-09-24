@@ -6,7 +6,7 @@ const sessionSchema = new Schema({
         ref: "user",
         require:true,
     },
-    accesToken: {
+    accessToken: {
         type: String,
         require:true,
     },
@@ -14,7 +14,7 @@ const sessionSchema = new Schema({
         type: String,
         require: true,
     }, 
-    accesTokenValidUnit: {
+    accessTokenValidUnit: {
         type: Date,
         require:true,
     },

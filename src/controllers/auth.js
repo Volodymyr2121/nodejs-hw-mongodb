@@ -30,7 +30,7 @@ export const authSignInController = async (req, res, next) => {
         status: 200,
         message: "Successfully logged in an user!",
         data: {
-            accesToken: session.accesToken,
+            accessToken: session.accessToken,
         }
     });
 };
@@ -44,7 +44,7 @@ export const refreshController = async (req, res, next) => {
         status: 200,
         message: "Successfully refreshed a session!",
         data: {
-            accesToken: session.accesToken,
+            accessToken: session.accessToken,
         }
     });
 };
