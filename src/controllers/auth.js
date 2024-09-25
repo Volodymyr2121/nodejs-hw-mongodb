@@ -1,3 +1,4 @@
+// import { refreshTokenLifetime } from "../constant/user.js";
 import { signUp, signIn, refreshSession, logout } from "../services/auth.js";
 
 const setupSession = (res, session) => { 
@@ -10,6 +11,7 @@ const setupSession = (res, session) => {
         expire: new Date(Date.now() + session.refreshTokenValidUnit)
     });
 };
+
 
 export const authSignUpController = async (req, res, next) => {
     const newUser = await signUp(req.body);
@@ -35,7 +37,7 @@ export const authSignInController = async (req, res, next) => {
     });
 };
 
-export const refreshController = async (req, res, next) => {
+export const refreshController = async (req, res,) => {
     const { refreshToken, sessionId } = req.cookies;
     const session = await refreshSession({refreshToken, sessionId});
     setupSession(res, session);
