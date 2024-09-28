@@ -10,5 +10,6 @@ authRouter.post("/register", validateBody(userSignUpSchema), crtlWrapper(authSig
 authRouter.post("/login", validateBody(userSignInSchema), crtlWrapper(authSignInController));
 authRouter.post("/refresh", crtlWrapper(refreshController));
 authRouter.post("/logout", crtlWrapper(logoutContoller));
+authRouter.post("/auth/send-reset-email", crtlWrapper());
 
 export default authRouter;
