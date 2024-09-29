@@ -28,3 +28,18 @@ export const userSignInSchema = Joi.object({
         'any.required': 'Password is required'
     })
 });
+
+export const requestResetEmailSchema = Joi.object({
+    email: Joi.string().pattern(emailRegexp).required().messages({
+        'any.required': 'Email is required'
+    })
+});
+
+export const resetPasswordSchema = Joi.object({
+  password: Joi.string().min(6).max(20).required().messages({
+        'string.min': 'Password should have at least 6 characters',
+        'string.max': 'Password should have at most 20 characters',
+        'any.required': 'Password is required'
+    }),
+  token: Joi.string().required(),
+});
