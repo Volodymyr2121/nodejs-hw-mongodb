@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import { env } from "./env.js";
+import { env } from "../utils/env.js";
 import * as fs from "node:fs/promises";
 
 const cloud_name = env("CLOUDINARY_CLOUD_NAME");
