@@ -7,6 +7,7 @@ import { notFoundHandler } from "./midlewarres/notFoundHandler.js";
 import { errorHandler } from "./midlewarres/errorHandler.js";
 import authRouter from "./routers/auth.js";
 import cookieParser from "cookie-parser";
+import swaggerDocs from "./midlewarres/swaggerDocs.js";
 
 const PORT = Number(env('PORT', '3000'));
 
@@ -26,6 +27,7 @@ export const setupServer = () => {
 
     app.use("/auth", authRouter);
     app.use("/contacts", contactsRouter);
+    app.use("/api-docs", swaggerDocs());
 
     app.use('*', notFoundHandler);
     app.use(errorHandler);
